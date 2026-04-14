@@ -1,4 +1,10 @@
 #!/bin/bash
+# Auto root
+if [ "$EUID" -ne 0 ]; then
+    echo "[+] Switching to root..."
+    exec sudo bash "$0" "$@"
+fi
+
 set -e
 
 WORKDIR="/etc/sni-proxy"
